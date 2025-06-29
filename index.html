@@ -2,14 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Quote Generator</title>
+    <title>Quote Generator with Storage</title>
 </head>
 <body>
     <div id="quoteDisplay"></div>
     <button id="newQuote">Show New Quote</button>
-    <input type="text" id="quoteText" placeholder="New quote">
-    <input type="text" id="quoteCategory" placeholder="Category">
-    <button id="addQuote">Add Quote</button>
+    
+    <div>
+        <input type="text" id="quoteText" placeholder="New quote">
+        <input type="text" id="quoteCategory" placeholder="Category">
+        <button id="addQuote">Add Quote</button>
+    </div>
+
+    <div>
+        <button id="exportQuotes">Export Quotes</button>
+        <input type="file" id="importFile" accept=".json">
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
