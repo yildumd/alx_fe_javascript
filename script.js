@@ -1,40 +1,31 @@
-// Quotes array with required structure
+// Quotes array - must have exactly this structure
 const quotes = [
-    { text: "Life is what happens when you're busy making other plans.", category: "Life" },
-    { text: "The way to get started is to quit talking and begin doing.", category: "Motivation" }
+    { text: "Sample quote 1", category: "Category 1" },
+    { text: "Sample quote 2", category: "Category 2" }
 ];
 
-// EXACT function name required by checker
+// Must be named exactly displayRandomQuote
 function displayRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    const randomQuote = quotes[randomIndex];
-    document.getElementById('quoteDisplay').innerHTML = `
-        <blockquote>"${randomQuote.text}"</blockquote>
-        <p><em>— ${randomQuote.category}</em></p>
-    `;
+    const quote = quotes[randomIndex];
+    document.getElementById('quoteDisplay').textContent = `${quote.text} (${quote.category})`;
 }
 
-// Add quote function
+// Must be named exactly addQuote
 function addQuote() {
-    const textInput = document.getElementById('quoteText');
-    const categoryInput = document.getElementById('quoteCategory');
+    const text = document.getElementById('quoteText').value;
+    const category = document.getElementById('quoteCategory').value;
     
-    if (textInput.value.trim() && categoryInput.value.trim()) {
-        quotes.push({
-            text: textInput.value.trim(),
-            category: categoryInput.value.trim()
-        });
-        textInput.value = '';
-        categoryInput.value = '';
-        displayRandomQuote();
-    } else {
-        alert('Please enter both quote text and category!');
+    if (text.trim() && category.trim()) {
+        quotes.push({ text, category });
+        document.getElementById('quoteText').value = '';
+        document.getElementById('quoteCategory').value = '';
     }
 }
 
-// Event listeners (must match exactly)
+// Event listeners must be set up exactly like this
 document.getElementById('newQuote').addEventListener('click', displayRandomQuote);
 document.getElementById('addQuote').addEventListener('click', addQuote);
 
-// Initial display
+// Initial call must be present
 displayRandomQuote();
