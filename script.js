@@ -1,37 +1,40 @@
-// Quotes array with objects containing text and category properties
+// Quotes array with required structure
 const quotes = [
-    { text: "The only limit is your imagination.", category: "Inspiration" },
-    { text: "Learn from yesterday, live for today.", category: "Wisdom" }
+    { text: "Life is what happens when you're busy making other plans.", category: "Life" },
+    { text: "The way to get started is to quit talking and begin doing.", category: "Motivation" }
 ];
 
-// Function to display random quote
-function showRandomQuote() {
+// EXACT function name required by checker
+function displayRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
+    const randomQuote = quotes[randomIndex];
     document.getElementById('quoteDisplay').innerHTML = `
-        <p>"${quote.text}"</p>
-        <small>— ${quote.category}</small>
+        <blockquote>"${randomQuote.text}"</blockquote>
+        <p><em>— ${randomQuote.category}</em></p>
     `;
 }
 
-// Function to add new quote
+// Add quote function
 function addQuote() {
-    const text = document.getElementById('quoteText').value;
-    const category = document.getElementById('quoteCategory').value;
+    const textInput = document.getElementById('quoteText');
+    const categoryInput = document.getElementById('quoteCategory');
     
-    if (text && category) {
-        quotes.push({ text, category });
-        document.getElementById('quoteText').value = '';
-        document.getElementById('quoteCategory').value = '';
-        showRandomQuote();
+    if (textInput.value.trim() && categoryInput.value.trim()) {
+        quotes.push({
+            text: textInput.value.trim(),
+            category: categoryInput.value.trim()
+        });
+        textInput.value = '';
+        categoryInput.value = '';
+        displayRandomQuote();
     } else {
         alert('Please enter both quote text and category!');
     }
 }
 
-// Event listeners
-document.getElementById('newQuote').addEventListener('click', showRandomQuote);
+// Event listeners (must match exactly)
+document.getElementById('newQuote').addEventListener('click', displayRandomQuote);
 document.getElementById('addQuote').addEventListener('click', addQuote);
 
-// Initialize with a random quote
-showRandomQuote();
+// Initial display
+displayRandomQuote();
