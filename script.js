@@ -1,31 +1,32 @@
-// Quotes array - must have exactly this structure
+// Quotes array must have exactly this structure
 const quotes = [
-    { text: "Sample quote 1", category: "Category 1" },
-    { text: "Sample quote 2", category: "Category 2" }
+    { text: "The greatest glory in living lies not in never falling, but in rising every time we fall.", category: "Inspiration" },
+    { text: "The way to get started is to quit talking and begin doing.", category: "Motivation" }
 ];
 
-// Must be named exactly displayRandomQuote
+// Must be exactly this function name
 function displayRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
-    document.getElementById('quoteDisplay').textContent = `${quote.text} (${quote.category})`;
+    const quoteDisplay = document.getElementById('quoteDisplay');
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    quoteDisplay.innerHTML = `<p>"${randomQuote.text}"</p><p><em>${randomQuote.category}</em></p>`;
 }
 
-// Must be named exactly addQuote
+// Must be exactly this function name
 function addQuote() {
-    const text = document.getElementById('quoteText').value;
-    const category = document.getElementById('quoteCategory').value;
+    const text = document.getElementById('quoteText').value.trim();
+    const category = document.getElementById('quoteCategory').value.trim();
     
-    if (text.trim() && category.trim()) {
+    if (text && category) {
         quotes.push({ text, category });
         document.getElementById('quoteText').value = '';
         document.getElementById('quoteCategory').value = '';
+        displayRandomQuote();
     }
 }
 
-// Event listeners must be set up exactly like this
+// Event listeners must be set exactly this way
 document.getElementById('newQuote').addEventListener('click', displayRandomQuote);
 document.getElementById('addQuote').addEventListener('click', addQuote);
 
-// Initial call must be present
+// Initial display call must be present
 displayRandomQuote();
